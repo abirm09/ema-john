@@ -1,8 +1,9 @@
 import React from "react";
 import ShoppingCart from "../Icons/ShoppingCart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const DisplayProducts = props => {
-  console.log(props);
   const { name, price, seller, img, ratings, id } = props.product;
   return (
     <div className="card card-compact w-[300px] mx-auto bg-base-100 shadow-xl border border-gray-300">
@@ -20,9 +21,11 @@ const DisplayProducts = props => {
       <div
         className="card-actions bg-orange-200 cursor-pointer flex justify-center py-3"
         style={{ borderRadius: "0 0 16px 16px" }}
+        onClick={() => props.handleAddToCart(props.product)}
       >
-        <button className="flex gap-3 font-lato active:scale-90 transition-all">
-          Add to Cart <ShoppingCart />
+        <button className="flex items-center gap-3 font-lato active:scale-90 transition-all">
+          Add to Cart
+          <FontAwesomeIcon icon={faShoppingCart} />
         </button>
       </div>
     </div>
