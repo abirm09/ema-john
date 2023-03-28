@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Cart from "../Cart/Cart";
 import DisplayProducts from "../DisplayProducts/DisplayProducts";
-import ProductNotLoaded from "../Productnotloaded/Productnotloaded";
 
 const ProductsAndOrder = () => {
   const [products, setProducts] = useState(null);
@@ -14,8 +14,8 @@ const ProductsAndOrder = () => {
     setCart([...cart, product]);
   };
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-5 mt-10 gap-5">
-      <div className="col-span-4 container mx-auto grid grid-cols-3 gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-5  gap-5">
+      <div className="col-span-4 container mx-auto grid grid-cols-3 gap-10 mt-10">
         {products
           ? products.map(product => (
               <DisplayProducts
@@ -26,9 +26,8 @@ const ProductsAndOrder = () => {
             ))
           : console.log("can not loaded.")}
       </div>
-      <div className="col-span-1">
-        <h2>Order summery</h2>
-        <h3>Selected item : {cart.length}</h3>
+      <div className="col-span-1 bg-orange-300 pt-10 pl-5 h-max pb-10 sticky top-0">
+        <Cart cart={cart}></Cart>
       </div>
     </div>
   );
