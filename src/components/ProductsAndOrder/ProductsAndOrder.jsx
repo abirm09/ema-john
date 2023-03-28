@@ -16,9 +16,22 @@ const ProductsAndOrder = () => {
     addToDb(product.id);
   };
   useEffect(() => {
-    const addedToCart = getShoppingCart();
-    console.log(addedToCart);
-  }, []);
+    const storedCart = getShoppingCart();
+    let savedCart = [];
+    //if there is any product exists in our state
+    if (products) {
+      //get id of the added product
+      for (let id in storedCart) {
+        //get product from the state by using id
+        const savedProduct = products.find(product => product.id == id);
+        console.log(storedCart[id]);
+        savedProduct.quantity = storedCart[id];
+        savedCart.push(savedProduct);
+        console.log(savedProduct);
+      }
+    }
+    console.log(savedCart);
+  }, [products]);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5  gap-5">
       <div className="col-span-4 container mx-auto grid grid-cols-3 gap-10 mt-10">
