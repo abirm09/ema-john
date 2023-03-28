@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { addToDb, getShoppingCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import DisplayProducts from "../DisplayProducts/DisplayProducts";
 
@@ -12,7 +13,12 @@ const ProductsAndOrder = () => {
   }, []);
   const handleAddToCart = product => {
     setCart([...cart, product]);
+    addToDb(product.id);
   };
+  useEffect(() => {
+    const addedToCart = getShoppingCart();
+    console.log(addedToCart);
+  }, []);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5  gap-5">
       <div className="col-span-4 container mx-auto grid grid-cols-3 gap-10 mt-10">
