@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { addToDb, getShoppingCart } from "../../utilities/fakedb";
+import CanNotLoadProduct from "../CanNotLoadProduct/CanNotLoadProduct";
 import Cart from "../Cart/Cart";
 import DisplayProducts from "../DisplayProducts/DisplayProducts";
 
@@ -24,26 +25,27 @@ const ProductsAndOrder = () => {
       for (let id in storedCart) {
         //get product from the state by using id
         const savedProduct = products.find(product => product.id == id);
-        console.log(storedCart[id]);
         savedProduct.quantity = storedCart[id];
         savedCart.push(savedProduct);
-        console.log(savedProduct);
+        // console.log(savedProduct);
       }
     }
-    console.log(savedCart);
+    setCart(savedCart);
   }, [products]);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5  gap-5">
       <div className="col-span-4 container mx-auto grid grid-cols-3 gap-10 mt-10">
-        {products
-          ? products.map(product => (
-              <DisplayProducts
-                key={product.id}
-                product={product}
-                handleAddToCart={handleAddToCart}
-              ></DisplayProducts>
-            ))
-          : console.log("can not loaded.")}
+        {products ? (
+          products.map(product => (
+            <DisplayProducts
+              key={product.id}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            ></DisplayProducts>
+          ))
+        ) : (
+          <CanNotLoadProduct></CanNotLoadProduct>
+        )}
       </div>
       <div className="col-span-1 bg-orange-300 pt-10 pl-5 h-max pb-10 sticky top-0">
         <Cart cart={cart}></Cart>
