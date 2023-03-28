@@ -35,8 +35,10 @@ const ProductsAndOrder = () => {
       for (let id in storedCart) {
         //get product from the state by using id
         const savedProduct = products.find(product => product.id == id);
-        savedProduct.quantity = storedCart[id];
-        savedCart.push(savedProduct);
+        if (savedProduct) {
+          savedProduct.quantity = storedCart[id];
+          savedCart.push(savedProduct);
+        }
         // console.log(savedProduct);
       }
     }
