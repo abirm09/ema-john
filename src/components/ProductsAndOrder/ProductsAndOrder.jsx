@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DisplayProducts from "../DisplayProducts/DisplayProducts";
+import ProductNotLoaded from "../Productnotloaded/Productnotloaded";
 
 const ProductsAndOrder = () => {
   const [products, setProducts] = useState(null);
@@ -23,7 +24,7 @@ const ProductsAndOrder = () => {
                 handleAddToCart={handleAddToCart}
               ></DisplayProducts>
             ))
-          : console.log("please reload the page")}
+          : console.log("can not loaded.")}
       </div>
       <div className="col-span-1">
         <h2>Order summery</h2>
